@@ -22,8 +22,8 @@ export interface DFAResult {
 }
 
 export class PasswordDFA {
-  private rules: DFARules;
-  private initialState: DFAState = { hasL: false, hasN: false, hasS: false, length: 0 };
+  private readonly rules: DFARules;
+  private readonly initialState: DFAState = { hasL: false, hasN: false, hasS: false, length: 0 };
 
   constructor(rules: DFARules) {
     this.rules = rules;

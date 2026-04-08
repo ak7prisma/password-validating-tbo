@@ -1,8 +1,8 @@
 export default function Footer() {
 
     return(
-        <footer>
-
-        </footer>
+        <div>
+            
+        </div>
     )
 }
