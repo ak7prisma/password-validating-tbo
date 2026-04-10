@@ -1,5 +1,5 @@
 import { type DFARules } from '../../utils/dfalogic';
-import { Input } from '../ui/Input';
+import { FilterLabel } from '../ui/FilterLabel';
 
 interface Props {
   rules: DFARules;
@@ -20,18 +20,10 @@ export const FilterContainer = ({ rules, setRules }: Props) => {
       </h3>
       
       <div className="flex flex-wrap justify-between items-center gap-4">
-        <label className="flex items-center gap-2 text-sm font-bold text-gray-400 cursor-pointer">
-          <input type="checkbox" className="accent-red-600 w-4 h-4" checked={rules.reqLetter} onChange={() => toggleRule('reqLetter')} />
-          [A-Z] Alpha
-        </label>
-        <label className="flex items-center gap-2 text-sm font-bold text-gray-400 cursor-pointer">
-          <input type="checkbox" className="accent-red-600 w-4 h-4" checked={rules.reqNumber} onChange={() => toggleRule('reqNumber')} />
-          [0-9] Numeric
-        </label>
-        <label className="flex items-center gap-2 text-sm font-bold text-gray-400 cursor-pointer">
-          <input type="checkbox" className="accent-red-600 w-4 h-4" checked={rules.reqSymbol} onChange={() => toggleRule('reqSymbol')} />
-          [!@#] Symbol
-        </label>
+        <FilterLabel label="[A-Z] Alpha" checked={rules.reqLetter} onChange={() => toggleRule('reqLetter')} />
+        <FilterLabel label="[0-9] Numeric" checked={rules.reqNumber} onChange={() => toggleRule('reqNumber')} />
+        <FilterLabel label="[!@#] Symbol" checked={rules.reqSymbol} onChange={() => toggleRule('reqSymbol')} />
+        
         <div className="flex items-center gap-2 text-sm font-bold text-orange-500">
           MIN_LEN:
           <input 
