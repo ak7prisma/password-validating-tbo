@@ -1,11 +1,11 @@
 import Footer from './components/Footer'
-import MainSection from './components/Mainsection'
+import RegistrationForm from './components/organisme/RegistrationForm'
 
 export default function App() {
 
   return (
     <>
-      <MainSection />
+      <RegistrationForm />
       <Footer />
     </>
   )
