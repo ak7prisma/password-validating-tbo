@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React from 'react';
+=======
+export default function Header() {
+>>>>>>> f90d1c29f1d67f5ee871079c116bcc3dcbd9d46c
 
 export interface HeaderProps {
   isSuccess: boolean;
