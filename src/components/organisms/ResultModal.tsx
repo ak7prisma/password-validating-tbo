@@ -41,7 +41,7 @@ export const ResultModal: React.FC<ResultModalProps> = ({ isOpen, onClose, dfaRe
             <div className="bg-[#111] p-4 font-mono text-sm overflow-x-auto max-h-64 scrollbar-thin scrollbar-thumb-gray-600 border border-gray-800">
               <div className="text-gray-400 mb-2">{'// DFA TRACE'}</div>
               {dfaResult?.trace.map((t, i) => (
-                <div key={i} className="mb-1 text-gray-300">
+                <div key={`${t.char}-${t.fromState}-${t.toState}-${i}`} className="mb-1 text-gray-300">
                   <span className="text-[#f7931e]">Step {i + 1}:</span> Input '{t.char}' ({t.charClass})
                   {' -> '} Transition: <span className="text-pink-400">{t.fromState}</span> {'=>'} <span className="text-cyan-400">{t.toState}</span>
                 </div>

@@ -16,12 +16,12 @@ export const RegistrationPage: React.FC = () => {
     useRegistrationFlow(policy);
 
   return (
-    <div className="min-h-screen bg-[#050505] font-sans text-white flex flex-col items-center justify-between p-6 relative overflow-hidden bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-900 to-[#050505]">
+    <div className="min-h-screen bg-[#050505] font-sans text-white flex flex-col items-center justify-between p-6 relative overflow-hidden bg-[radial-gradient(ellipse_at_center,var(--tw-gradient-stops))] from-gray-900 to-[#050505]">
       {/* Background Neon Elements */}
-      <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#f7931e] to-transparent opacity-50 blur-sm"></div>
-      <div className="absolute bottom-0 right-0 w-full h-[2px] bg-gradient-to-l from-transparent via-[#ff003c] to-transparent opacity-50 blur-sm"></div>
+      <div className="absolute top-0 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-[#f7931e] to-transparent opacity-50 blur-sm"></div>
+      <div className="absolute bottom-0 right-0 w-full h-0.5 bg-linear-to-l from-transparent via-[#ff003c] to-transparent opacity-50 blur-sm"></div>
       
-      <div className="flex-grow flex items-center justify-center w-full">
+      <div className="grow flex items-center justify-center w-full">
         <motion.div
           className="max-w-xl w-full relative z-10"
           style={{ perspective: 1000 }}
@@ -33,7 +33,7 @@ export const RegistrationPage: React.FC = () => {
           >
             <div style={{ transform: "translateZ(50px)" }}>
               <div className="text-center mb-8">
-                <h1 className="text-4xl font-extrabold uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-[#f7931e] to-[#ff003c] filter drop-shadow-[0_0_10px_rgba(255,0,60,0.8)]">
+                <h1 className="text-4xl font-extrabold uppercase tracking-widest text-transparent bg-clip-text bg-linear-to-r from-[#f7931e] to-[#ff003c] filter drop-shadow-[0_0_10px_rgba(255,0,60,0.8)]">
                   {PORTAL_COPY.title}
                 </h1>
                 <p className="text-gray-400 text-sm mt-2 font-mono uppercase tracking-widest">
