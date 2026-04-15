@@ -20,6 +20,7 @@ export interface DFAResult {
   hasNumeric: boolean;
   hasSymbol: boolean;
   isLengthValid: boolean;
+  inputLength: number;
   trace: DFATraceStep[];
   finalState: string;
 }
@@ -31,17 +32,13 @@ export class PasswordDFA {
     this.policy = policy;
   }
 
-  // Helper to categorize character
   private getCharClass(char: string): CharacterClass {
     if (/[a-zA-Z]/.test(char)) return 'L';
-    if (/[0-9]/.test(char)) return 'N';
-    // Any printable ASCII symbol or typical special character
+    if (/\d/.test(char)) return 'N';
     if (/[^a-zA-Z0-9\s]/.test(char)) return 'S';
     return 'OTHER';
   }
 
-  // State format: q_{hasL(0|1)}_{hasN(0|1)}_{hasS(0|1)}_{len}
-  // e.g. q_0_0_0_0 is initial
   private transition(currentState: string, char: string): string {
     const parts = currentState.split('_');
     let hasL = Number.parseInt(parts[1], 10);
@@ -55,7 +52,6 @@ export class PasswordDFA {
     if (charClass === 'N') hasN = 1;
     if (charClass === 'S') hasS = 1;
     
-    // We cap the length state at minLength to keep state space finite based on policy
     if (len < this.policy.minLength) {
       len += 1;
     } else if (this.policy.minLength === 0) {
@@ -82,8 +78,6 @@ export class PasswordDFA {
         currentState = nextState;
     }
 
-    // Since our length state is capped at minLength, when minLength is 0 it acts implicitly valid
-    // Alternatively track raw length for the object
     const finalLength = input.length;
     
     const parts = currentState.split('_');
@@ -104,6 +98,7 @@ export class PasswordDFA {
       hasNumeric: finalHasN,
       hasSymbol: finalHasS,
       isLengthValid,
+      inputLength: finalLength,
       trace,
       finalState: currentState
     };

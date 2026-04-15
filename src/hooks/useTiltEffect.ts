@@ -31,12 +31,12 @@ export const useTiltEffect = (targetRef: RefObject<HTMLElement | null>) => {
       mouseY.set(0);
     };
 
-    window.addEventListener("mousemove", handleWindowMouseMove);
-    window.addEventListener("mouseleave", handleWindowMouseLeave);
+    globalThis.addEventListener("mousemove", handleWindowMouseMove);
+    globalThis.addEventListener("mouseleave", handleWindowMouseLeave);
 
     return () => {
-      window.removeEventListener("mousemove", handleWindowMouseMove);
-      window.removeEventListener("mouseleave", handleWindowMouseLeave);
+      globalThis.removeEventListener("mousemove", handleWindowMouseMove);
+      globalThis.removeEventListener("mouseleave", handleWindowMouseLeave);
     };
   }, [mouseX, mouseY, targetRef]);
 

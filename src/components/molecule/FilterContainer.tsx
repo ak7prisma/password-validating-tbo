@@ -1,13 +1,13 @@
-import type { DFARules } from '../../utils/dfalogic';
+import type { DFAPolicy } from '../../utils/dfa';
 import { FilterLabel } from '../ui/FilterLabel';
 
 interface Props {
-  rules: DFARules;
-  setRules: React.Dispatch<React.SetStateAction<DFARules>>;
+  rules: DFAPolicy;
+  setRules: React.Dispatch<React.SetStateAction<DFAPolicy>>;
 }
 
 export const FilterContainer = ({ rules, setRules }: Props) => {
-  const toggleRule = (key: keyof Omit<DFARules, 'minLength'>) => {
+  const toggleRule = (key: keyof Omit<DFAPolicy, 'minLength'>) => {
     setRules((prev) => ({ ...prev, [key]: !prev[key] }));
   };
 
@@ -20,9 +20,9 @@ export const FilterContainer = ({ rules, setRules }: Props) => {
       </h3>
       
       <div className="flex flex-wrap justify-between items-center gap-4">
-        <FilterLabel label="[A-Z] Alpha" checked={rules.reqLetter} onChange={() => toggleRule('reqLetter')} />
-        <FilterLabel label="[0-9] Numeric" checked={rules.reqNumber} onChange={() => toggleRule('reqNumber')} />
-        <FilterLabel label="[!@#] Symbol" checked={rules.reqSymbol} onChange={() => toggleRule('reqSymbol')} />
+        <FilterLabel label="[A-Z] Alpha" checked={rules.requireAlpha} onChange={() => toggleRule('requireAlpha')} />
+        <FilterLabel label="[0-9] Numeric" checked={rules.requireNumeric} onChange={() => toggleRule('requireNumeric')} />
+        <FilterLabel label="[!@#] Symbol" checked={rules.requireSymbol} onChange={() => toggleRule('requireSymbol')} />
         
         <div className="flex items-center gap-2 text-sm font-bold text-orange-500">
           <span>MIN_LEN:</span>
