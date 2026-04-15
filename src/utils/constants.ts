@@ -1,3 +1,4 @@
+import { i } from "framer-motion/client";
 import type { DFAPolicy } from "./dfa";
 
 export const DEFAULT_DFA_POLICY: DFAPolicy = {
@@ -20,10 +21,10 @@ export const FOOTER_CONTENT = {
     secondary: "L1 TI24",
   },
   profiles: [
-    { name: "Yuda Pratama", nim: "09021182429025" },
-    { name: "Ahmad Kurnia Prisma", nim: "09021182429009" },
-    { name: "Rio Agustiawan", nim: "09021182429001" },
-    { name: "Ismi Brilianita", nim: "09021182429016" },
+    { name: "Yuda Pratama", nim: "09021182429025", imageUrl: "prisma.jpeg" },
+    { name: "Ahmad Kurnia Prisma", nim: "09021182429009", imageUrl: "yuda.png" },
+    { name: "Rio Agustiawan", nim: "09021182429001", imageUrl: "rio.jpeg" },
+    { name: "Ismi Brilianita", nim: "09021182429016", imageUrl: "ismi.jpeg" },
   ],
   socials: [
     { icon: "instagram", url: "https://www.instagram.com/p/DXE6o0LGdMi/?utm_source=ig_web_copy_link/" },

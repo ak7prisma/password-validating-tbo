@@ -12,9 +12,10 @@ const SOCIAL_ICONS: Record<SocialIconName, React.ComponentType<{ size?: number }
 interface ProfileCardProps {
   name: string;
   nim: string;
+  imageUrl?: string;
 }
 
-const ProfileCard: React.FC<ProfileCardProps> = ({ name, nim }) => {
+const ProfileCard: React.FC<ProfileCardProps> = ({ name, nim, imageUrl }) => {
   const initials = name
     .split(' ')
     .map((part) => part[0])
@@ -24,9 +25,17 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ name, nim }) => {
 
   return (
     <article className="bg-[#0b0b0b] border border-gray-800 rounded-sm p-4 text-center transition-transform duration-300 hover:-translate-y-1 hover:border-[#f7931e]/60">
-      <div className="mx-auto mb-3 h-14 w-14 rounded-full border-2 border-[#f7931e]/60 bg-[#131313] flex items-center justify-center font-bold tracking-widest text-[#f7931e]">
-        {initials}
-      </div>
+      {imageUrl ? (
+        <img 
+          src={imageUrl} 
+          alt={`Profile of ${name}`} 
+          className="mx-auto mb-3 h-14 w-14 rounded-full border-2 border-[#f7931e]/60 object-cover bg-[#131313]"
+        />
+      ) : (
+        <div className="mx-auto mb-3 h-14 w-14 rounded-full border-2 border-[#f7931e]/60 bg-[#131313] flex items-center justify-center font-bold tracking-widest text-[#f7931e]">
+          {initials}
+        </div>
+      )}
       <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-100">{name}</h3>
       <p className="text-xs text-gray-500 tracking-wider mt-1">{nim}</p>
     </article>
@@ -41,7 +50,12 @@ export const Footer: React.FC = () => {
       <div className="mx-auto max-w-6xl px-6 py-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
           {FOOTER_CONTENT.profiles.map((profile) => (
-            <ProfileCard key={profile.nim} name={profile.name} nim={profile.nim} />
+            <ProfileCard 
+              key={profile.nim} 
+              name={profile.name} 
+              nim={profile.nim} 
+              imageUrl={profile.imageUrl}
+            />
           ))}
         </div>
 
