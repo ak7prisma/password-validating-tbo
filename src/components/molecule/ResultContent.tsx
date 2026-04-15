@@ -1,5 +1,4 @@
-import React from 'react';
-import { DFAResult, DFARules } from '../../utils/dfa';
+import type { DFAResult, DFARules } from '../../utils/dfalogic';
 
 export interface ContentProps {
   isMatch: boolean;

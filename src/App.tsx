@@ -1,12 +1,14 @@
-import Footer from './components/Footer'
-import RegistrationForm from './components/organisme/RegistrationForm'
+import React from 'react';
+import { RegistrationPage } from './pages/RegistrationPage';
+import { Footer } from './components/organisms/Footer';
 
-export default function App() {
-
+const App: React.FC = () => {
   return (
     <>
-      <RegistrationForm />
+      <RegistrationPage />
       <Footer />
     </>
-  )
-}
+  );
+};
+
+export default App;

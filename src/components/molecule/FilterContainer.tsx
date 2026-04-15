@@ -1,4 +1,4 @@
-import { type DFARules } from '../../utils/dfalogic';
+import type { DFARules } from '../../utils/dfalogic';
 import { FilterLabel } from '../ui/FilterLabel';
 
 interface Props {
@@ -25,12 +25,13 @@ export const FilterContainer = ({ rules, setRules }: Props) => {
         <FilterLabel label="[!@#] Symbol" checked={rules.reqSymbol} onChange={() => toggleRule('reqSymbol')} />
         
         <div className="flex items-center gap-2 text-sm font-bold text-orange-500">
-          MIN_LEN:
-          <input 
-            type="number" min={1} 
-            value={rules.minLength} 
+          <span>MIN_LEN:</span>
+          <input
+            type="number"
+            min={1}
+            value={rules.minLength}
             onChange={(e) => setRules(p => ({ ...p, minLength: Number(e.target.value) }))}
-            className="bg-transparent border border-orange-500 text-white w-12 text-center py-1 outline-none" 
+            className="bg-transparent border border-orange-500 text-white w-12 text-center py-1 outline-none"
           />
         </div>
       </div>
