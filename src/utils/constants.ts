@@ -1,4 +1,3 @@
-import { i } from "framer-motion/client";
 import type { DFAPolicy } from "./dfa";
 
 export const DEFAULT_DFA_POLICY: DFAPolicy = {
