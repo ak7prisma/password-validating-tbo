@@ -20,8 +20,8 @@ export const FOOTER_CONTENT = {
     secondary: "L1 TI24",
   },
   profiles: [
-    { name: "Yuda Pratama", nim: "09021182429025", imageUrl: "prisma.jpeg" },
-    { name: "Ahmad Kurnia Prisma", nim: "09021182429009", imageUrl: "yuda.png" },
+    { name: "Yuda Pratama", nim: "09021182429025", imageUrl: "yuda.jpeg" },
+    { name: "Ahmad Kurnia Prisma", nim: "09021182429009", imageUrl: "prisma.png" },
     { name: "Rio Agustiawan", nim: "09021182429001", imageUrl: "rio.png" },
     { name: "Ismi Brilianita", nim: "09021182429016", imageUrl: "ismi.png" },
   ],
