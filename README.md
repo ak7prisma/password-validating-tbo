@@ -1,3 +1,52 @@
+# Alur Kerja Program (Studi Kasus Input)
+
+## Deskripsi Singkat
+Program ini adalah aplikasi registrasi berbasis React yang memvalidasi password menggunakan konsep Deterministic Finite Automata (DFA). Validasi password dilakukan secara real-time berdasarkan kebijakan keamanan yang dapat diatur (misal: wajib huruf, angka, simbol, dan panjang minimal).
+
+## Alur Kerja (Flow)
+1. **Pengguna membuka halaman registrasi** dan mengisi form: username, email, password, dan konfirmasi password.
+2. **Pengguna menekan tombol "INITIALIZE REGISTRATION"** untuk mengirim data.
+3. **Password yang diinput akan diproses oleh DFA** sesuai kebijakan yang aktif (misal: harus mengandung huruf, angka, simbol, dan minimal 8 karakter).
+4. **DFA melakukan tracing** setiap karakter password, mencatat transisi state, dan mengecek apakah seluruh syarat terpenuhi.
+5. **Hasil evaluasi DFA** (diterima/ditolak, syarat mana yang tidak terpenuhi, jejak transisi) serta status kecocokan password dan konfirmasi password akan ditampilkan dalam modal hasil.
+6. **Jika password valid dan cocok**, registrasi dianggap sukses (hanya simulasi, tidak menyimpan data). Jika tidak, pengguna mendapat feedback detail letak kesalahan.
+
+## Contoh Kasus Input
+### Kasus 1: Password Valid
+- **Input:**
+  - Username: `budi`
+  - Email: `budi@mail.com`
+  - Password: `Budi123!`
+  - Confirm Password: `Budi123!`
+- **Hasil:**
+  - DFA menerima password (semua syarat terpenuhi)
+  - Password dan konfirmasi cocok
+  - Modal menampilkan status sukses dan trace DFA
+
+### Kasus 2: Password Tidak Valid (Kurang Simbol)
+- **Input:**
+  - Username: `sari`
+  - Email: `sari@mail.com`
+  - Password: `Sari1234`
+  - Confirm Password: `Sari1234`
+- **Hasil:**
+  - DFA menolak password (syarat simbol tidak terpenuhi)
+  - Modal menampilkan status gagal, trace DFA, dan syarat yang gagal
+
+### Kasus 3: Password dan Konfirmasi Tidak Cocok
+- **Input:**
+  - Username: `andi`
+  - Email: `andi@mail.com`
+  - Password: `Andi123!`
+  - Confirm Password: `Andi1234!`
+- **Hasil:**
+  - DFA menerima password (syarat terpenuhi)
+  - Tapi password dan konfirmasi tidak cocok
+  - Modal menampilkan status gagal karena mismatch
+
+## Catatan Tambahan
+- Kebijakan DFA bisa diubah pada panel "DFA Security Policies" (misal: menonaktifkan syarat simbol atau mengubah panjang minimal).
+- Setiap proses validasi password akan menampilkan jejak transisi DFA secara detail di modal hasil.
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
