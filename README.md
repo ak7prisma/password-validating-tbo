@@ -1,3 +1,46 @@
+# Alur Kerja Kode (Flow Fungsi)
+
+Berikut penjelasan alur kerja program dari sisi kode ketika user menekan tombol submit pada form registrasi:
+
+1. **User menekan tombol submit di RegistrationForm**
+  - Komponen: `RegistrationForm.tsx`
+  - Fungsi: `handleSubmit()`
+  - Aksi: Memanggil props `onSubmitStart(username, email, password, confirmPassword)`
+
+2. **Fungsi onSubmitStart diteruskan ke RegistrationPage**
+  - Komponen: `RegistrationPage.tsx`
+  - Aksi: Meneruskan ke hook `useRegistrationFlow(policy)` → `handleRegistrationSubmit()`
+
+3. **Proses Validasi di useRegistrationFlow**
+  - File: `hooks/useRegistrationFlow.ts`
+  - Fungsi: `handleRegistrationSubmit(username, email, password, confirmPassword)`
+  - Aksi:
+    - Membuat instance `PasswordDFA` dengan policy aktif
+    - Memanggil `dfa.evaluate(password)` untuk memproses password
+    - Menyimpan hasil DFA ke state (`dfaResult`)
+    - Mengecek kecocokan password dan konfirmasi (`pwdMismatch`)
+    - Membuka modal hasil (`isModalOpen`)
+
+4. **Hasil Validasi Ditampilkan di ResultModal**
+  - Komponen: `ResultModal.tsx`
+  - Props: `isOpen`, `dfaResult`, `pwdMismatch`, `onClose`
+  - Aksi: Menampilkan status sukses/gagal, trace DFA, dan detail hasil validasi
+
+### Diagram Alur Fungsi (Simplified)
+
+```mermaid
+graph TD
+  A[User klik Submit] --> B(handleSubmit di RegistrationForm)
+  B --> C(onSubmitStart props)
+  C --> D(handleRegistrationSubmit di useRegistrationFlow)
+  D --> E(PasswordDFA.evaluate)
+  E --> F{Validasi & Trace}
+  F --> G[Set state hasil]
+  G --> H[ResultModal tampilkan hasil]
+```
+
+---
+Dengan alur di atas, setiap aksi submit akan selalu melewati fungsi-fungsi tersebut secara berurutan, sehingga mudah untuk melakukan debugging atau pengembangan fitur validasi lebih lanjut.
 # Alur Kerja Program (Studi Kasus Input)
 
 ## Deskripsi Singkat
