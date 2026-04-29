@@ -1,5 +1,9 @@
+//Penerapan DFA
+
+// Karakter class untuk DFA
 type CharacterClass = 'L' | 'N' | 'S' | 'OTHER';
 
+// Inisialisasi Aturan DFA
 export interface DFAPolicy {
   requireAlpha: boolean;
   requireNumeric: boolean;
@@ -7,6 +11,7 @@ export interface DFAPolicy {
   minLength: number;
 }
 
+// Inisialisasi Hasil DFA dan Lacak DFA
 export interface DFATraceStep {
   char: string;
   charClass: CharacterClass;
@@ -25,6 +30,7 @@ export interface DFAResult {
   finalState: string;
 }
 
+// Implementasi DFA
 export class PasswordDFA {
   private readonly policy: DFAPolicy;
   
@@ -32,6 +38,7 @@ export class PasswordDFA {
     this.policy = policy;
   }
 
+  // Klasifikasi karakter
   private getCharClass(char: string): CharacterClass {
     if (/[a-zA-Z]/.test(char)) return 'L';
     if (/\d/.test(char)) return 'N';
@@ -39,6 +46,7 @@ export class PasswordDFA {
     return 'OTHER';
   }
 
+  // Transisi DFA
   private transition(currentState: string, char: string): string {
     const parts = currentState.split('_');
     let hasL = Number.parseInt(parts[1], 10);
@@ -61,11 +69,13 @@ export class PasswordDFA {
     return `q_${hasL}_${hasN}_${hasS}_${len}`;
   }
 
+  // Evaluasi Input DFA
   public evaluate(input: string): DFAResult {
     const q0 = 'q_0_0_0_0';
     let currentState = q0;
     const trace: DFATraceStep[] = [];
 
+    // Looping untuk meemproses setiap input
     for (const element of input) {
         const char = element;
         const nextState = this.transition(currentState, char);
@@ -80,11 +90,13 @@ export class PasswordDFA {
 
     const finalLength = input.length;
     
+    // Ambil informasi dari final state
     const parts = currentState.split('_');
     const finalHasL = parts[1] === '1';
     const finalHasN = parts[2] === '1';
     const finalHasS = parts[3] === '1';
 
+    // Evaluasi akhir sesuai aturan
     const hasAlphaValid = !this.policy.requireAlpha || finalHasL;
     const hasNumericValid = !this.policy.requireNumeric || finalHasN;
     const hasSymbolValid = !this.policy.requireSymbol || finalHasS;

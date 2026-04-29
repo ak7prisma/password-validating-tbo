@@ -28,7 +28,6 @@ export const useRegistrationFlow = (policy: DFAPolicy): UseRegistrationFlowResul
     const dfa = new PasswordDFA(policy);
     const result = dfa.evaluate(password);
 
-    // Keep lightweight observability for assignment simulation.
     console.log(`Processing registration for: ${username} (${email})`);
 
     setDfaResult(result);
